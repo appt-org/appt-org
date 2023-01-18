@@ -1,0 +1,62 @@
+{
+  "primaryNav": "Primary",
+  "openPrimaryNav": "Open primary navigation",
+  "closePrimaryNav": "Close primary navigation",
+  "resourcesTitle": "Resources",
+  "authorsBy": "By",
+  "externalLinkLabel": "External",
+  "sidebar": {
+    "nav": "Secondary",
+    "openNavLabel": "Open sidebar navigation",
+    "closeNavLabel": "Close sidebar navigation"
+  },
+  "localeSelectLabel": "Change language",
+  "inPageNav": {
+    "title": "In this article",
+    "anchorTitle": "Link to",
+    "ariaLabel": "Table of contents"
+  },
+  "pageNotFound": {
+    "title": "Page not found",
+    "text": "The page you're looking for has been moved, deleted, or never existed.",
+    "linkText": "To the home page"
+  },
+  "serverError": {
+    "title": "Oops, something went wrong.",
+    "text": "Try to refresh this page or contact us if the problem persists."
+  },
+  "video": {
+    "play": "Play video: {{ title }}",
+    "playWithThumbnail": "Play video: {{ title }}. Contains image: {{ thumbnail }}",
+    "loading": "Loading video"
+  },
+  "loading": "Loading",
+  "skipToContent": "Skip to main content",
+  "codeSample": {
+    "groupLabel": "Code sample",
+    "platformLabel": "Platform",
+    "programmingLanguageLabel": "Programming language",
+    "contributeUrlTitle": "Contribute",
+    "contributeUrlLabel": "Contribute code to '{{ name }}'",
+    "copy": "Copy",
+    "copyLabel": "Copy code of '{{ name }}'",
+    "copied": "Copied",
+    "copiedLabel": "Copied code of '{{ name }}'"
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "label": "Breadcrumbs"
+  },
+  "guidelines": {
+    "chapters": "Chapters"
+  },
+  "contribute": {
+    "text": "Feedback?",
+    "button": "Let us know!"
+  },
+  "footer": {
+    "partnerLogosText": "Created by",
+    "sponsorLogosText": "Supported by",
+    "copyrightText": "Appt Foundation"
+  }
+}

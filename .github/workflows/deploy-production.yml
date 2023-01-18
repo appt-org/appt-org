@@ -1,0 +1,74 @@
+name: Deploy - Production
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: gcr.io/appt-org/appt-production
+    steps:
+      # Checkout main in this case because we want to build main, the scheduled job always uses the default branch (https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule)
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: main
+
+      - name: Auth
+        uses: 'google-github-actions/auth@v0'
+        with:
+          project_id: ${{ env.GCP_PROJECT }}
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Configure Docker
+        run: gcloud auth configure-docker --quiet
+
+      - name: Create env file
+        run: |
+          touch .env.production
+          echo CONTENTFUL_SPACE_ID=${{ secrets.PRODUCTION_CONTENTFUL_SPACE_ID }} >> .env.production
+          echo CONTENTFUL_ENVIRONMENT=${{ secrets.PRODUCTION_CONTENTFUL_ENVIRONMENT }} >> .env.production
+          echo CONTENTFUL_ACCESS_TOKEN=${{ secrets.PRODUCTION_CONTENTFUL_ACCESS_TOKEN }} >> .env.production
+          echo CONTENTFUL_PREVIEW_ACCESS_TOKEN=${{ secrets.PRODUCTION_CONTENTFUL_PREVIEW_ACCESS_TOKEN }} >> .env.production
+          echo CONTENTFUL_PREVIEW_SECRET=${{ secrets.PRODUCTION_CONTENTFUL_PREVIEW_SECRET }} >> .env.production
+          echo CONTENTFUL_MANAGEMENT_ACCESS_TOKEN=${{ secrets.PRODUCTION_CONTENTFUL_MANAGEMENT_ACCESS_TOKEN }} >> .env.production
+          echo DATA_SA_KEY=${{ secrets.DATA_SA_KEY }} >> .env.production
+          echo DATA_PROJECT_ID=${{ secrets.DATA_PROJECT_ID }} >> .env.production
+          echo DATA_STORAGE_BUCKET=${{ secrets.DATA_STORAGE_BUCKET }} >> .env.production
+          echo DATA_STORAGE_FILE=${{ secrets.DATA_STORAGE_FILE }} >> .env.production
+          echo DATA_SECRET=${{ secrets.DATA_SECRET }} >> .env.production
+          echo NEXT_PUBLIC_BASE_URL=${{ secrets.PRODUCTION_NEXT_PUBLIC_BASE_URL }} >> .env.production
+          echo NEXT_PUBLIC_ENVIRONMENT=${{ secrets.PRODUCTION_NEXT_PUBLIC_ENVIRONMENT }} >> .env.production
+          echo NEXT_PUBLIC_FEEDBACK_URL=${{ secrets.PRODUCTION_NEXT_PUBLIC_FEEDBACK_URL }} >> .env.production
+          echo NEXT_PUBLIC_ANALYTICS_ENABLED=${{ secrets.PRODUCTION_NEXT_PUBLIC_ANALYTICS_ENABLED }} >> .env.production
+          echo NEXT_PUBLIC_ANALYTICS_GTM_ID=${{ secrets.PRODUCTION_NEXT_PUBLIC_ANALYTICS_GTM_ID }} >> .env.production
+          echo NEXT_PUBLIC_ANALYTICS_SERVER_URL=${{ secrets.PRODUCTION_NEXT_PUBLIC_ANALYTICS_SERVER_URL }} >> .env.production
+
+      - name: Build Docker image
+        run: docker build . -t ${{ env.IMAGE_NAME }} --build-arg environment=production
+
+      - name: Push Docker image
+        run: docker push ${{ env.IMAGE_NAME }}
+
+      - name: 'Deploy to Cloud Run - Release'
+        if: ${{ github.event_name != 'schedule' }}
+        uses: 'google-github-actions/deploy-cloudrun@v0'
+        with:
+          service: 'appt-production'
+          image: ${{ env.IMAGE_NAME }}
+          region: 'europe-west4'
+          no_traffic: true
+
+      - name: 'Deploy to Cloud Run - Schedule'
+        if: ${{ github.event_name == 'schedule' }}
+        uses: 'google-github-actions/deploy-cloudrun@v0'
+        with:
+          service: 'appt-production'
+          image: ${{ env.IMAGE_NAME }}
+          region: 'europe-west4'
+          revision_traffic: LATEST=100

@@ -1,0 +1,3 @@
+// We always want to prefix the default locale in the URL, see https://nextjs.org/docs/advanced-features/i18n-routing#prefixing-the-default-locale
+// So we need to add the default folder here so the site won't break.
+{}

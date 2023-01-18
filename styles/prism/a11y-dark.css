@@ -1,0 +1,195 @@
+/**
+ * a11y-dark theme for JavaScript, CSS, and HTML
+ * Based on the okaidia theme: https://github.com/PrismJS/prism/blob/gh-pages/themes/prism-okaidia.css
+ * @author ericwbailey (https: //github.com/ericwbailey/a11y-syntax-highlighting)
+ * 
+ * Slightly edited for Appt
+ * WCAG AAA compliant for color contrast.
+ */
+
+/*
+ Theme
+ */
+.dark code[class*="language-"],
+.dark pre[class*="language-"] {
+  color: #FFFFFF;
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 1rem;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+.token.comment {
+  font-size: 0.9rem;
+}
+
+/* Code blocks */
+.dark pre[class*="language-"] {
+  padding: 1em;
+  margin: 0;
+  overflow: auto;
+}
+
+/* Inline code */
+.dark :not(pre)>code[class*="language-"] {
+  padding: 0.1em;
+  border-radius: 0.3em;
+  white-space: normal;
+}
+
+.dark .token.comment,
+.dark .token.prolog,
+.dark .token.doctype,
+.dark .token.cdata {
+  color: #d4d0ab;
+}
+
+.dark .token.punctuation {
+  color: #fefefe;
+}
+
+.token.namespace {
+  opacity: .7;
+}
+
+.dark .token.property,
+.dark .token.tag,
+.dark .token.constant,
+.dark .token.class-name,
+.dark .token.symbol,
+.dark .token.deleted {
+  color: #ffa07a;
+}
+
+.dark .token.boolean,
+.dark .token.number {
+  color: #00e0e0;
+}
+
+.dark .token.selector,
+.dark .token.attr-name,
+.dark .token.string,
+.dark .token.char,
+.dark .token.builtin,
+.dark .token.inserted {
+  color: #abe338;
+}
+
+.dark .token.operator,
+.dark .token.entity,
+.dark .token.url,
+.dark .language-css .token.string,
+.dark .style .token.string,
+.dark .token.variable {
+  color: #00e0e0;
+}
+
+.dark .token.atrule,
+.dark .token.attr-value,
+.dark .token.function {
+  color: #ffd700;
+}
+
+.dark .token.keyword {
+  color: #00e0e0;
+}
+
+.dark .token.regex,
+.dark .token.important {
+  color: #ffd700;
+}
+
+.dark .token.important,
+.dark .token.bold {
+  font-weight: bold;
+}
+
+.dark .token.italic {
+  font-style: italic;
+}
+
+.dark .token.entity {
+  cursor: help;
+}
+
+/*
+ Plugin support
+ */
+
+/* Line highlight */
+.dark .line-highlight {
+  background: rgba(255, 217, 0, 0.10);
+  border-top: 1px solid rgba(255, 217, 0, 0.55);
+  border-bottom: 1px solid rgba(255, 217, 0, 0.55);
+}
+
+/* Line numbers */
+.dark .line-numbers .line-numbers-rows {
+  border-right: 1px solid #F8F8F2;
+}
+
+.dark .line-numbers-rows>span:before {
+  color: #D4D0AB;
+}
+
+/*
+ High contrast mode support
+*/
+@media screen and (-ms-high-contrast: active) {
+
+  .dark code[class*="language-"],
+  .dark pre[class*="language-"] {
+    color: windowText;
+    background: window;
+  }
+
+  .dark :not(pre)>code[class*="language-"],
+  .dark pre[class*="language-"] {
+    background: window;
+  }
+
+  .dark .token.important {
+    background: highlight;
+    color: window;
+    font-weight: normal;
+  }
+
+  .dark .token.atrule,
+  .dark .token.attr-value,
+  .dark .token.function,
+  .dark .token.keyword,
+  .dark .token.operator,
+  .dark .token.selector {
+    font-weight: bold;
+  }
+
+  .dark .token.attr-value,
+  .dark .token.comment,
+  .dark .token.doctype,
+  .dark .token.function,
+  .dark .token.keyword,
+  .dark .token.operator,
+  .dark .token.property,
+  .dark .token.string {
+    color: highlight;
+  }
+
+  .dark .token.attr-value,
+  .dark .token.url {
+    font-weight: normal;
+  }
+}

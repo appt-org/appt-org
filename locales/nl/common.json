@@ -1,0 +1,62 @@
+{
+  "primaryNav": "Hoofd",
+  "openPrimaryNav": "Open hoofdnavigatie",
+  "closePrimaryNav": "Sluit hoofdnavigatie",
+  "resourcesTitle": "Bronnen",
+  "authorsBy": "Door",
+  "externalLinkLabel": "Extern",
+  "sidebar": {
+    "nav": "Sub",
+    "openNavLabel": "Open zijbalk navigatie",
+    "closeNavLabel": "Sluit zijbalk navigatie"
+  },
+  "localeSelectLabel": "Pas taal aan",
+  "inPageNav": {
+    "title": "In dit artikel",
+    "anchorTitle": "Link naar",
+    "ariaLabel": "Inhoudsopgave"
+  },
+  "pageNotFound": {
+    "title": "Pagina niet gevonden",
+    "text": "De pagina die je zoekt is verplaatst, verwijderd of heeft nooit bestaan.",
+    "linkText": "Naar de homepage"
+  },
+  "serverError": {
+    "title": "Oeps! Er is iets misgegaan.",
+    "text": "Probeer deze pagina te vernieuwen of neem contact met ons op als het probleem zich blijft voordoen."
+  },
+  "video": {
+    "play": "Video afspelen: {{ title }}",
+    "playWithThumbnail": "Video afspelen: {{ title }}. Bevat afbeelding: {{ thumbnail }}",
+    "loading": "Video wordt geladen"
+  },
+  "loading": "Laden",
+  "skipToContent": "Ga naar hoofdinhoud",
+  "codeSample": {
+    "groupLabel": "Code voorbeeld",
+    "platformLabel": "Platform",
+    "programmingLanguageLabel": "Programmeertaal",
+    "contributeUrlTitle": "Bijdragen",
+    "contributeUrlLabel": "Draag code bij aan '{{ name }}'",
+    "copy": "Kopieer",
+    "copyLabel": "Kopieer code van '{{ name }}'",
+    "copied": "Gekopieerd",
+    "copiedLabel": "Code gekopieerd van '{{ name }}'"
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "label": "Navigatiepad"
+  },
+  "guidelines": {
+    "chapters": "Hoofdstukken"
+  },
+  "contribute": {
+    "text": "Feedback?",
+    "button": "Laat 't ons weten!"
+  },
+  "footer": {
+    "partnerLogosText": "Gemaakt door",
+    "sponsorLogosText": "Ondersteund door",
+    "copyrightText": "Stichting Appt"
+  }
+}

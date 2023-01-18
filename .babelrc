@@ -1,0 +1,29 @@
+{
+  "presets": [
+    "next/babel"
+  ],
+  "plugins": [
+    [
+      "prismjs",
+      {
+        "languages": [
+          "swift",
+          "objectivec",
+          "dart",
+          "typescript",
+          "javascript",
+          "kotlin",
+          "java",
+          "html",
+          "tsx",
+          "jsx",
+          "xml",
+          "csharp"
+        ],
+        "plugins": [
+          "line-numbers"
+        ]
+      }
+    ]
+  ]
+}

@@ -1,0 +1,61 @@
+name: Deploy - Acceptance
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: gcr.io/appt-org/appt-acceptance
+    steps:
+      # Checkout develop in this case because we want to build develop, the scheduled job always uses the default branch (https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule)
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: develop
+
+      - name: Auth
+        uses: 'google-github-actions/auth@v0'
+        with:
+          project_id: ${{ env.GCP_PROJECT }}
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Configure Docker
+        run: gcloud auth configure-docker --quiet
+
+      - name: Create env file
+        run: |
+          touch .env.acceptance
+          echo CONTENTFUL_SPACE_ID=${{ secrets.ACCEPTANCE_CONTENTFUL_SPACE_ID }} >> .env.acceptance
+          echo CONTENTFUL_ENVIRONMENT=${{ secrets.ACCEPTANCE_CONTENTFUL_ENVIRONMENT }} >> .env.acceptance
+          echo CONTENTFUL_ACCESS_TOKEN=${{ secrets.ACCEPTANCE_CONTENTFUL_ACCESS_TOKEN }} >> .env.acceptance
+          echo CONTENTFUL_PREVIEW_ACCESS_TOKEN=${{ secrets.ACCEPTANCE_CONTENTFUL_PREVIEW_ACCESS_TOKEN }} >> .env.acceptance
+          echo CONTENTFUL_PREVIEW_SECRET=${{ secrets.ACCEPTANCE_CONTENTFUL_PREVIEW_SECRET }} >> .env.acceptance
+          echo CONTENTFUL_MANAGEMENT_ACCESS_TOKEN=${{ secrets.ACCEPTANCE_CONTENTFUL_MANAGEMENT_ACCESS_TOKEN }} >> .env.acceptance
+          echo DATA_SA_KEY=${{ secrets.DATA_SA_KEY }} >> .env.acceptance
+          echo DATA_PROJECT_ID=${{ secrets.DATA_PROJECT_ID }} >> .env.acceptance
+          echo DATA_STORAGE_BUCKET=${{ secrets.DATA_STORAGE_BUCKET }} >> .env.acceptance
+          echo DATA_STORAGE_FILE=${{ secrets.DATA_STORAGE_FILE }} >> .env.acceptance
+          echo DATA_SECRET=${{ secrets.DATA_SECRET }} >> .env.acceptance
+          echo NEXT_PUBLIC_BASE_URL=${{ secrets.ACCEPTANCE_NEXT_PUBLIC_BASE_URL }} >> .env.acceptance
+          echo NEXT_PUBLIC_ENVIRONMENT=${{ secrets.ACCEPTANCE_NEXT_PUBLIC_ENVIRONMENT }} >> .env.acceptance
+          echo NEXT_PUBLIC_FEEDBACK_URL=${{ secrets.ACCEPTANCE_NEXT_PUBLIC_FEEDBACK_URL }} >> .env.acceptance
+          echo NEXT_PUBLIC_ANALYTICS_ENABLED=${{ secrets.ACCEPTANCE_NEXT_PUBLIC_ANALYTICS_ENABLED }} >> .env.acceptance
+          echo NEXT_PUBLIC_ANALYTICS_GTM_ID=${{ secrets.ACCEPTANCE_NEXT_PUBLIC_ANALYTICS_GTM_ID }} >> .env.acceptance
+          echo NEXT_PUBLIC_ANALYTICS_SERVER_URL=${{ secrets.ACCEPTANCE_NEXT_PUBLIC_ANALYTICS_SERVER_URL }} >> .env.acceptance
+
+      - name: Build Docker image
+        run: docker build . -t ${{ env.IMAGE_NAME }} --build-arg environment=acceptance
+
+      - name: Push Docker image
+        run: docker push ${{ env.IMAGE_NAME }}
+
+      - name: 'Deploy to Cloud Run'
+        uses: 'google-github-actions/deploy-cloudrun@v0'
+        with:
+          service: 'appt-acceptance'
+          image: ${{ env.IMAGE_NAME }}
+          region: 'europe-west4'
