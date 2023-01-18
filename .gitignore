@@ -37,6 +37,7 @@ yarn-error.log*
 
 .vscode
 
+.env
 .env.development
 .env.acceptance
 .env.production
