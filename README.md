@@ -1,5 +1,5 @@
 # Appt.org
-*Source code for the Appt.org website.*
+*Source code of appt.org*
 
 ![Build Status](https://github.com/appt-org/appt-org/actions/workflows/deploy-acceptance.yml/badge.svg)
 ![Build Status](https://github.com/appt-org/appt-org/actions/workflows/deploy-production.yml/badge.svg)
