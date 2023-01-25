@@ -43,7 +43,7 @@ automatically deployed to GCP with commits on specific branches, outlined below.
 
 ### Production
 
-- **URL**: https://appt-production-o4ale4roda-ez.a.run.app
+- **URL**: https://appt.org
 - **Branch**: main
 
 
