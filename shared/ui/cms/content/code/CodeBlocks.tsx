@@ -105,7 +105,7 @@ export function CodeBlocks({ codeBlocks, platformSelect }: CodeBlocksProps) {
         <div className="flex absolute top-0 right-0 p-4 opacity-100 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 out-quint">
           {selectedCodeBlock?.docsUrl && (
             <Link
-              className="flex mr-2"
+              className="inline-flex mr-2"
               href={selectedCodeBlock.docsUrl}
               title={t('codeSample.contributeUrlLabel', { name: selectedCodeBlock.name })}
               icon={<ExternalIcon aria-label={t('externalLinkLabel')} className="w-8 h-8" />}>
