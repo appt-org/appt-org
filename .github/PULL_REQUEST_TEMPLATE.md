@@ -1,6 +1,6 @@
-#### What is the function of this PR?
+#### What does this PR do?
 
-#### How do you test the PR?
+#### How do you test this PR?
 
 Test link:
 
@@ -9,8 +9,8 @@ Test link:
 #### Checklist
 
 - [ ] Works on Safari, Chrome, Firefox & Edge
-- [ ] Works on different screensizes (responsive)
-- [ ] Scores 100 in [Lighthouse/PageSpeed Insights](https://pagespeed.web.dev) on SEO, accessibility and best practices, and > 90 on performance
+- [ ] Works on different screen sizes (responsive)
+- [ ] Scores 100 in [Lighthouse/PageSpeed Insights](https://pagespeed.web.dev) on SEO, accessibility and best practices, and >= 90 on performance
 - [ ] Does not contain tracking cookies
 - [ ] Are migrations added?
 - [ ] Is the README.md updated?
