@@ -1,24 +1,24 @@
-#### Wat doet deze PR?
+#### What does this PR do?
 
-#### Hoe test je deze PR?
+#### How do you test this PR?
 
 Test link:
 
-<!-- Voeg hier de test link en stappen om te testen toe -->
+<!-- Add the test link and steps to complete the test here -->
 
 #### Checklist
 
-- [ ] Werkt in Safari, Chrome, Firefox & Edge
-- [ ] Werkt op verschillende schermformaten (responsive)
-- [ ] Scoort 100 in Lighthouse op SEO, accessibility en best practices en > 90 op performance
-- [ ] Bevat geen tracking cookies
-- [ ] Migraties toegevoegd?
-- [ ] README.md geupdate?
+- [ ] Works on Safari, Chrome, Firefox & Edge
+- [ ] Works on different screen sizes (responsive)
+- [ ] Scores 100 in [Lighthouse/PageSpeed Insights](https://pagespeed.web.dev) on SEO, accessibility and best practices, and >= 90 on performance
+- [ ] Does not contain tracking cookies
+- [ ] Are migrations added?
+- [ ] Is the README.md updated?
 
 **Accessibility checklist**
 
-- Schaalbare tekst
-- Dark en light mode
+- Scalable text
+- Dark and light mode
 - Contrast
 - Focus management
-- Aria attributen
+- Aria attributes
