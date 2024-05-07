@@ -1,3 +1,6 @@
+> [!IMPORTANT]  
+> The appt.org website has been migrated to Docusaurus, source code is available at the [appt-website repository](https://github.com/appt-org/appt-website).
+
 # Appt.org
 *Source code of appt.org*
 
