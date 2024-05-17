@@ -1,7 +1,7 @@
 export function isProd() {
-  return process.env.NEXT_PUBLIC_ENVIRONMENT === 'production';
+  return false;
 }
 
 export function analyticsEnabled() {
-  return process.env.NEXT_PUBLIC_ANALYTICS_ENABLED === 'true';
+  return false;
 }

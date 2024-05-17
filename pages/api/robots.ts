@@ -9,7 +9,5 @@ export default async function robots(req: NextApiRequest, res: NextApiResponse) 
 User-agent: *
 ${disallow}
 ${allow}
-
-Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL}/sitemap.xml
 `);
 }
